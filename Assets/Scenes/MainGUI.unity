@@ -1522,6 +1522,9 @@ MonoBehaviour:
   seq: 0
   sec: 0
   nsec: 0
+  secondsSinceEpoch: 0
+  nSeconds: 0
+  unix: 0
 --- !u!4 &1937795708
 Transform:
   m_ObjectHideFlags: 0
