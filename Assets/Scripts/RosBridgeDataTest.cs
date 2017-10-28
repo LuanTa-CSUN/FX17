@@ -24,11 +24,11 @@ public class RosBridgeDataTest : MonoBehaviour {
     void Start () {
         connection = new ROSBridgeWebSocketConnection(host, port);
         connection.Connect();
+        connection.AddServiceResponse(typeof(ServiceCallback));
         connection.AddSubscriber(typeof(PoseMsgSubscriber));
         PoseMsgSubscriber.OnCallBack += PoseMsgSubscriber_OnCallBack;
 
         connection.AddPublisher(typeof(PoseMsgPublisher));
-
     }
 
     private void PoseMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
@@ -60,43 +60,38 @@ public class RosBridgeDataTest : MonoBehaviour {
         secondsSinceEpoch = (int)t.TotalSeconds;
         nSeconds = t.Milliseconds * 10000;
         connection.Render();
-        if(Input.GetKey(KeyCode.LeftArrow))
+        float xOffset = 0;
+        if(Input.GetKeyDown(KeyCode.Return))
         {
-            
-            connection.Publish(
-                PoseMsgPublisher.GetMessageTopic(),
-                new PoseStampedMsg(
-                new HeaderMsg(
-                    seq,
-                    new TimeMsg(
-                        secondsSinceEpoch,//pose._header.GetTimeMsg().GetSecs() + 1,
-                        nSeconds),//pose._header.GetTimeMsg().GetNsecs()),
-                    "fcu"),//pose._header.GetFrameId()),
-                new PoseMsg(
-                    new PointMsg(pose._pose._position.GetX() - 1, pose._pose._position.GetY(), pose._pose._position.GetZ()),
-                    pose._pose._orientation
-                    )
-                ));
-            seq++;
+            connection.CallService("mavros/cmd/arming", "[true]");
+            connection.CallService("/mavros/set_mode", "[0, \"OFFBOARD\"]");
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-
-            connection.Publish(
-                PoseMsgPublisher.GetMessageTopic(),
-                new PoseStampedMsg(
-                new HeaderMsg(
-                    seq,
-                    new TimeMsg(
-                        secondsSinceEpoch,//pose._header.GetTimeMsg().GetSecs() + 1,
-                        nSeconds),//pose._header.GetTimeMsg().GetNsecs()),
-                    "fcu"),//pose._header.GetFrameId()),
-                new PoseMsg(
-                    new PointMsg(pose._pose._position.GetX() + 1, pose._pose._position.GetY(), pose._pose._position.GetZ()),
-                    pose._pose._orientation
-                    )
-                ));
-            seq++;
+            connection.CallService("mavros/cmd/arming", "[false]");
         }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            xOffset--;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            xOffset++;
+        }
+        connection.Publish(
+             PoseMsgPublisher.GetMessageTopic(),
+             new PoseStampedMsg(
+             new HeaderMsg(
+                 seq,
+                 new TimeMsg(
+                     pose._header.GetTimeMsg().GetSecs(),//secondsSinceEpoch,
+                     pose._header.GetTimeMsg().GetNsecs() + 10),//nSeconds),
+                 pose._header.GetFrameId()),//"fcu"),
+             new PoseMsg(
+                 new PointMsg(pose._pose._position.GetX() + xOffset, pose._pose._position.GetY(), 2),//pose._pose._position.GetZ()),
+                 pose._pose._orientation
+                 )
+             ));
+        seq++;
     }
 }
