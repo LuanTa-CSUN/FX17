@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class TargetPose
+public class Pose
 {
     public Vector3 Position { get; set; }
     public Quaternion Rotation { get; set; }
