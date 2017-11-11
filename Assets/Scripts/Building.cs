@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : SerializedMonoBehaviour
 {
     public BuildingInfo BuildingInfo;
 
+    public ITarget Target;
     public GameObject NorthIndicator;
     public GameObject SouthIndicator;
     public GameObject WestIndicator;
