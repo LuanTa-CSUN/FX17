@@ -12,10 +12,10 @@ public struct RosTime
         get
         {
             RosTime rosTime = new RosTime();
-            TimeSpan now = DateTime.Now - unixEpoch;
+            TimeSpan diff = DateTime.UtcNow - unixEpoch;
 
-            rosTime.sec = (int) now.TotalSeconds;
-            rosTime.nsec = now.Milliseconds * 1000000;
+            rosTime.sec = (int) diff.TotalSeconds;
+            rosTime.nsec = diff.Milliseconds * 1000000;
 
             return rosTime;
         }
