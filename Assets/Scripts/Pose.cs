@@ -23,18 +23,7 @@ public class Pose
     }
     public static implicit operator PoseMsg(Pose pose)
     {
-        PointMsg p = new PointMsg(
-            pose.Position.x,
-            pose.Position.z,
-            pose.Position.y);
-        
-        QuaternionMsg q = new QuaternionMsg(
-            pose.Rotation.x,
-            pose.Rotation.z,
-            pose.Rotation.y,
-            pose.Rotation.w);
-        
-        return new PoseMsg(p, q);
-
+        return new PoseMsg(pose.Position.ToPointMsg(),
+                           pose.Rotation.ToQuaternionMsg());
     }
 }
