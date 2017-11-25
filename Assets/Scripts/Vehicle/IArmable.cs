@@ -1,3 +1,5 @@
+using System;
+
 public interface IArmable
 {
     void ProcessArm (bool arm, Action<bool> callback = null);
