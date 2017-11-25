@@ -17,19 +17,8 @@ public class Pose
     {
         return new Pose()
         {
-            // ROS and Unity's y and z axes are swapped,
-            // so swap them here
-            Position = new Vector3(
-                poseMsg._position.GetX(),
-                poseMsg._position.GetZ(),
-                poseMsg._position.GetY()),
-
-            // TODO VERIFY that quaternion z and y also need to be swapped
-            Rotation = new Quaternion(
-                poseMsg._orientation.GetX(),
-                poseMsg._orientation.GetZ(),
-                poseMsg._orientation.GetY(),
-                poseMsg._orientation.GetW())
+            Position = poseMsg._position.ToVector3(), 
+            Rotation = poseMsg._orientation.ToQuaternion()
         };
     }
     public static implicit operator PoseMsg(Pose pose)
