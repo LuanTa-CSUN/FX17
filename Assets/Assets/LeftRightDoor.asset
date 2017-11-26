@@ -11,7 +11,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71426973de93814c9c43384ba09ab81, type: 3}
   m_Name: LeftRightDoor
   m_EditorClassIdentifier: 
-  North: 2
-  South: 2
-  East: 1
-  West: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: North
+      Entry: 7
+      Data: 0|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 0
+    - Name: Length
+      Entry: 4
+      Data: 0
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: South
+      Entry: 7
+      Data: 1|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 0
+    - Name: Length
+      Entry: 4
+      Data: 0
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: East
+      Entry: 7
+      Data: 2|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 0
+    - Name: Length
+      Entry: 4
+      Data: 0
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: West
+      Entry: 7
+      Data: 3|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 0
+    - Name: Length
+      Entry: 4
+      Data: 0
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

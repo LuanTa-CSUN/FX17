@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d4685a471d02547a4606181664fede, type: 3}
   m_Name: TrialConfiguration
   m_EditorClassIdentifier: 
+  VehicleConfiguration: {fileID: 11400000, guid: b473462ee67fed44cbdf65550c3b2cda,
+    type: 2}
   Buildings:
-  - Position: {x: 0, y: 0, z: 0}
-    Inforamation: {fileID: 11400000, guid: be43da87ba198a74dbbfe047b7f95dc9, type: 2}
+  - Position: {x: -3.51, y: 0, z: 0}
+  - Position: {x: 0.59, y: 0, z: 0}
