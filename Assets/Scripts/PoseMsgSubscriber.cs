@@ -10,22 +10,22 @@ public class PoseMsgSubscriber
     public delegate void CallBackHandler(ROSBridgeMsg msg);
     public static event CallBackHandler OnCallBack;
 
-    public new static string GetMessageTopic()
+    public static string GetMessageTopic()
     {
         return "/mavros/local_position/pose";
     }
 
-    public new static string GetMessageType()
+    public static string GetMessageType()
     {
         return PoseStampedMsg.GetMessageType();
     }
 
-    public new static ROSBridgeMsg ParseMessage(JSONNode msg)
+    public static ROSBridgeMsg ParseMessage(JSONNode msg)
     {
         return new PoseStampedMsg(msg);
     }
 
-    public new static void CallBack(ROSBridgeMsg msg)
+    public static void CallBack(ROSBridgeMsg msg)
     {
         OnCallBack?.Invoke(msg);
         //Debug.Log("Render callback in /mavros/local_position/pose " + msg);

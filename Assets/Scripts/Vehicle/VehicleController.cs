@@ -5,9 +5,9 @@ using ROSBridgeLib.geometry_msgs;
 using ROSBridgeLib.std_msgs;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "VehicleController", menuName = "VehicleController/VehicleController", order = 1)]
 public class VehicleController : ScriptableObject, IArmable, INavigation
 {
-    [SerializeField]
     private ROSBridgeWebSocketConnection connection;
     [SerializeField]
     private string host;
@@ -16,12 +16,11 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
  
     public Pose PoseDesired { get; set; }
     public Pose PoseActual  { get; private set; }
-
-    private int seq;
-    
     public List<Pose> Mission {get; set;}
 
-    public VehicleController()
+    private int seq;
+
+    public void Initialize()
     {
         connection = new ROSBridgeWebSocketConnection(host, port);
         connection.Connect();
@@ -37,12 +36,13 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
 
     public void Update()
     {    
+        connection.Render();
+        
         //TODO abstract the "fcu" string
         HeaderMsg header = new HeaderMsg(seq++, RosTime.Now, "fcu");
         PoseStampedMsg poseStampedMsg = new PoseStampedMsg(header, PoseDesired);
         
         connection.Publish(PoseMsgPublisher.GetMessageTopic(), poseStampedMsg);
-        connection.Render();
     }
 
     public void ProcessArm (bool arm, Action<bool> callback = null)
@@ -61,6 +61,7 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
     {
         Arming = true;
         connection.CallService("mavros/cmd/arming", "[true]");
+        //TODO handle callback 
         //if(callback)
     }
 
@@ -70,6 +71,11 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         connection.CallService("mavros/cmd/arming", "[false]");
     }
 
+    public void EnableOffboard()
+    {
+        connection.CallService("/mavros/set_mode", "[0, \"OFFBOARD\"]");
+    }
+    
     public bool Armed { get; private set; }
     public bool ProcessingArm 
     { 
