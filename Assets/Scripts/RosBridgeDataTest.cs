@@ -55,10 +55,10 @@ public class RosBridgeDataTest : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        unix = DateTimeOffset.Now.ToUnixTimeSeconds();
+        //unix = DateTimeOffset.Now.ToUnixTimeSeconds();
         TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
         secondsSinceEpoch = (int)t.TotalSeconds;
-        nSeconds = t.Milliseconds * 10000;
+        nSeconds = t.Milliseconds * 1000000;
         connection.Render();
         float xOffset = 0;
         if(Input.GetKeyDown(KeyCode.Return))

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ROSBridgeLib;
 using ROSBridgeLib.geometry_msgs;
+using ROSBridgeLib.std_msgs;
 using UnityEngine;
 
 public class VehicleController : ScriptableObject, IArmable, INavigation
@@ -13,19 +14,10 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
     [SerializeField]
     private int port;
  
-    private Pose poseDesired;
-
-    public Pose PoseDesired 
-    { 
-        get { return poseDesired;  }
-        set
-        {
-            poseDesired = value;
-            PositionDesiredHelper();
-        }
-    }
-    
+    public Pose PoseDesired { get; set; }
     public Pose PoseActual  { get; private set; }
+
+    private int seq;
     
     public List<Pose> Mission {get; set;}
 
@@ -40,14 +32,17 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
 
     private void PoseMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
     {
-        //PoseActual = ((PoseStampedMsg) msg)._pose;
-        //sec = pose._header.GetTimeMsg().GetSecs();
-        //nsec = pose._header.GetTimeMsg().GetNsecs();
+        PoseActual = ((PoseStampedMsg) msg)._pose;
     }
 
-    private void PositionDesiredHelper()
-    {
-        //connection.CallService("mavros/setpoint_position/pose", poseDesired.toString(););
+    public void Update()
+    {    
+        //TODO abstract the "fcu" string
+        HeaderMsg header = new HeaderMsg(seq++, RosTime.Now, "fcu");
+        PoseStampedMsg poseStampedMsg = new PoseStampedMsg(header, PoseDesired);
+        
+        connection.Publish(PoseMsgPublisher.GetMessageTopic(), poseStampedMsg);
+        connection.Render();
     }
 
     public void ProcessArm (bool arm, Action<bool> callback = null)

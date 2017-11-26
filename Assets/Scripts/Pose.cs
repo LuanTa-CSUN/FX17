@@ -21,6 +21,7 @@ public class Pose
             Rotation = poseMsg._orientation.ToQuaternion()
         };
     }
+    
     public static implicit operator PoseMsg(Pose pose)
     {
         return new PoseMsg(pose.Position.ToPointMsg(),
