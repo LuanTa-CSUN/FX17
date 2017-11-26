@@ -9,8 +9,21 @@ public class TrialConfiguration : ScriptableObject {
     public class TrialBuildingInfo
     {
         public Vector3 Position;
-        public BuildingInfo Inforamation;
+        private BuildingInfo information;
+        public BuildingInfo Information
+        {
+            get
+            {
+                return information;
+            }
+            set
+            {
+                information = Instantiate(value);
+            }
+        }
     }
+
+    public VehicleConfiguration VehicleConfiguration;
     
     public TrialBuildingInfo[] Buildings;
 }
