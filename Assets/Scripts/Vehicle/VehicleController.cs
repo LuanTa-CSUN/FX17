@@ -41,7 +41,6 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         //TODO abstract the "fcu" string
         HeaderMsg header = new HeaderMsg(seq++, RosTime.Now, "fcu");
         PoseStampedMsg poseStampedMsg = new PoseStampedMsg(header, PoseDesired);
-        
         connection.Publish(PoseMsgPublisher.GetMessageTopic(), poseStampedMsg);
     }
 
@@ -62,13 +61,20 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         Arming = true;
         connection.CallService("mavros/cmd/arming", "[true]");
         //TODO handle callback 
-        //if(callback)
+        if (callback != null)
+        {
+            
+        }
     }
 
     public void Disarm (Action<bool> callback = null)
     {
         Disarming = true;
         connection.CallService("mavros/cmd/arming", "[false]");
+        if (callback != null)
+        {
+            
+        }
     }
 
     public void EnableOffboard()
