@@ -20,9 +20,14 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
 
     private int seq;
 
-    public void Initialize()
+    public void Initialize(string host, int port)
     {
-        connection = new ROSBridgeWebSocketConnection(host, port);
+        this.host = host;
+        this.port = port;
+        
+        Debug.Log($"Vehicle host:{host}, port: {port}");
+        
+        connection = new ROSBridgeWebSocketConnection(this.host, this.port);
         connection.Connect();
         connection.AddServiceResponse(typeof(ServiceCallback));
         connection.AddSubscriber(typeof(PoseMsgSubscriber));

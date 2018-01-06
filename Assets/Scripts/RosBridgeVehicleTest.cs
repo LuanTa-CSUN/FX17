@@ -4,8 +4,6 @@ using UnityEditor;
 using UnityEngine;public class RosBridgeVehicleTest : MonoBehaviour
 {
     [SerializeField]
-    private ROSBridgeWebSocketConnection connection;
-    [SerializeField]
     private string host;
     [SerializeField]
     private int port;
@@ -19,7 +17,7 @@ using UnityEngine;public class RosBridgeVehicleTest : MonoBehaviour
     
     void Start()
     {
-        vehicle.Initialize();
+        vehicle.Initialize(host, port);
     }
 
     void Update()

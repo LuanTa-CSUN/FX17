@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5481c69745d94378b08031941cde1693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: 
-  port: 0
+  host: ws://192.168.1.13
+  port: 9090
   drone: {fileID: 1010679710}
   vehicle: {fileID: 11400000, guid: fc7ea9ffd728b48d3a80d9b9473d3cd4, type: 2}
 --- !u!23 &1010679712
