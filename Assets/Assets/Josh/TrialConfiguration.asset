@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d4685a471d02547a4606181664fede, type: 3}
+  m_Name: TrialConfiguration
+  m_EditorClassIdentifier: 
+  VehicleConfiguration: {fileID: 11400000, guid: e1e6ff456512546d8916713aae3eb7a0,
+    type: 2}
+  Buildings:
+  - Position: {x: 0, y: 0.5, z: 0}
+  - Position: {x: 5, y: 0.5, z: 0}
+  - Position: {x: 5, y: 0.5, z: 5}
+  - Position: {x: 8, y: 0.5, z: 5}
+  BuildingPrefab: {fileID: 1036036400474466, guid: 3e30364dd1c6d441281412256b1241c7,
+    type: 2}
+  machineTrailMat: {fileID: 2100000, guid: c73ad0b77a4d14983a0648691dbc6a30, type: 2}
+  humanTrailMat: {fileID: 2100000, guid: 014ebca09a8dd4fcdbd8fd9337eacceb, type: 2}
+  trailThickness: 0.25

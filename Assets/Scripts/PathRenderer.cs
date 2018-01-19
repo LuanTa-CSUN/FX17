@@ -30,7 +30,9 @@ public class PathRenderer : SerializedMonoBehaviour
 
     public void Awake()
     {
+        //lineRenderer
         lineRenderer = GetComponent<LineRenderer>();
+
     }
 
     public void Update()
@@ -44,7 +46,9 @@ public class PathRenderer : SerializedMonoBehaviour
         {
             return;
         }
+
         List<Pose> path = pathConfiguration.GeneratePath();
+        /*
         Vector3[] positions = new Vector3[path.Count];
         for(int i = 0; i < path.Count; i++)
         {
@@ -52,5 +56,13 @@ public class PathRenderer : SerializedMonoBehaviour
         }
         lineRenderer.positionCount = positions.Length;
         lineRenderer.SetPositions(positions);
+        /* */
+
+
+        lineRenderer.positionCount = path.Count;
+        lineRenderer.SetPositions(path.Select(pose => pose.Position).ToArray());
+        lineRenderer.sharedMaterial = pathConfiguration.HumanTrailMat;
+        float thickness = pathConfiguration.TrailThickness;
+        lineRenderer.SetWidth(thickness, thickness);
     }
 }

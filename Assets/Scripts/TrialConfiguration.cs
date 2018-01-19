@@ -12,6 +12,15 @@ public class TrialConfiguration : ScriptableObject {
 
     public GameObject BuildingPrefab;
 
+    [SerializeField] private Material machineTrailMat;
+    public Material MachineTrailMat{ get{ return machineTrailMat; } }
+
+    [SerializeField] private Material humanTrailMat;
+    public Material HumanTrailMat{ get{ return humanTrailMat; } }
+
+    [SerializeField] [Range(.1f, .5f)] private float trailThickness;
+    public float TrailThickness { get { return trailThickness; } }
+
     [Button("GenerateTrial")]
     public GameObject GenerateTrial()
     {

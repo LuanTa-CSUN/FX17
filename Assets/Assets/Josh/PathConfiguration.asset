@@ -1,0 +1,277 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675051a8b30fba546824388967322ebb, type: 3}
+  m_Name: PathConfiguration
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Waypoints
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[ITarget, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 8
+    - Name: 
+      Entry: 7
+      Data: 1|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 2
+    - Name: direction
+      Entry: 3
+      Data: 18446744073709551614
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 1
+    - Name: direction
+      Entry: 3
+      Data: 18446744073709551615
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 2
+    - Name: direction
+      Entry: 3
+      Data: 2
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 1
+    - Name: direction
+      Entry: 3
+      Data: 1
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 1
+    - Name: direction
+      Entry: 3
+      Data: 2
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 2
+    - Name: direction
+      Entry: 3
+      Data: 1
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 1
+    - Name: direction
+      Entry: 3
+      Data: 18446744073709551614
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|Wall, Assembly-CSharp
+    - Name: Info
+      Entry: 3
+      Data: 2
+    - Name: direction
+      Entry: 3
+      Data: 18446744073709551615
+    - Name: Length
+      Entry: 4
+      Data: 1
+    - Name: buildingPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Configuration: {fileID: 11400000, guid: 05d87893a4389496d90c7e2eed0c75a0, type: 2}
+  PathRenderer: {fileID: 1410791438376116, guid: c913f378205e74c48acf07f82f8cd951,
+    type: 2}

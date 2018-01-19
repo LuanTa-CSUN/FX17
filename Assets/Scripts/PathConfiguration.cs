@@ -11,6 +11,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Path Configuration", menuName = "Path Configuration")]
 public class PathConfiguration : SerializedScriptableObject
 {
+
+    public Material MachineTrailMat{ get{ return Configuration.MachineTrailMat; } }
+
+    public Material HumanTrailMat{ get{ return Configuration.HumanTrailMat; } }
+
+    public float TrailThickness { get{ return Configuration.TrailThickness; } }
+
     public TrialConfiguration Configuration;
 
     public class TargetAbstractor
@@ -55,13 +62,14 @@ public class PathConfiguration : SerializedScriptableObject
     [ListDrawerSettings(HideAddButton = true, OnTitleBarGUI = "OnListTitleGUI")]
     public List<ITarget> Waypoints;
 
+
     public System.Object[] GetPossibleTargets()
     {
         IEnumerable<System.Object> objects = Assembly.GetExecutingAssembly().GetTypes()
             .Where(
                 type =>
                 {
-                    return typeof(ITarget).IsAssignableFrom(type) && 
+                    return typeof(ITarget).IsAssignableFrom(type) &&
                         type != typeof(Wall) &&
                         !type.IsInterface &&
                         !type.IsAbstract;
@@ -146,4 +154,5 @@ public class PathConfiguration : SerializedScriptableObject
 
         return trialObject;
     }
+
 }

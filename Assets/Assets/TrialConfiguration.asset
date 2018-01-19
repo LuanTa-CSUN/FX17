@@ -18,5 +18,8 @@ MonoBehaviour:
   - Position: {x: 5, y: 0, z: 0}
   - Position: {x: 5, y: 0, z: 5}
   - Position: {x: 8, y: 0, z: 5}
-  BuildingPrefab: {fileID: 1887290166041434, guid: e447fa209517f894580c47ec9dcc4214,
+  BuildingPrefab: {fileID: 1036036400474466, guid: 3e30364dd1c6d441281412256b1241c7,
     type: 2}
+  machineTrailMat: {fileID: 2100000, guid: c73ad0b77a4d14983a0648691dbc6a30, type: 2}
+  humanTrailMat: {fileID: 2100000, guid: 014ebca09a8dd4fcdbd8fd9337eacceb, type: 2}
+  trailThickness: 0.25
