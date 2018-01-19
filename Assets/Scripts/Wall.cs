@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
-public class Wall : ITarget
+public struct Wall : ITarget
 {
     public enum WallDirection
     {
@@ -10,33 +11,41 @@ public class Wall : ITarget
         Top = 2
     }
 
-    public WallInfo Info = WallInfo.None;
+    public WallInfo Info;
 
-    private WallDirection direction;
+    [HideInInspector]
+    public WallDirection direction;
 
     public float Length;
 
-    private Building building;
-
     public Vector3 buildingPosition;
 
-    public Wall(Building building, WallDirection direction)
+    public Wall(Vector3 position, WallDirection direction, WallInfo info)
     {
-        this.building = building;
+        this.Length = 1;
+        this.Info = info;
+        this.buildingPosition = position;
         this.direction = direction;
     }
 
     public override string ToString()
     {
-        return $"Building: {building?.name}, {buildingPosition} | Wall: {direction.ToString()}";
+        return $"Position: {buildingPosition} | Wall: {direction}";
     }
 
-    public Pose[] GetTargetPose(VehicleConfiguration vehicleConfiguration, Vector3 offset = default(Vector3))
+    public Pose[] GetTargetPose(VehicleConfiguration vehicleConfiguration, Vector3? lastPosition = null, Vector3 offset = default(Vector3))
     {
-        Vector3 movementDirection = new Vector3(((int)Info + 1) % 2, 0, (int)Info % 2);
-        Vector3 paddingDirection = new Vector3((int)Info % 2, 0, ((int)Info + 1) % 2);
-        Vector3 startPosition = building.transform.position - movementDirection * Length / 2 + paddingDirection + offset;
-        Vector3 endPosition = building.transform.position + movementDirection * Length / 2 + paddingDirection + offset;
+        Vector3 movementDirection = new Vector3(((int)direction + 1) % 2, 0, (int)direction % 2);
+        Vector3 paddingDirection = new Vector3((int)direction % 2, 0, ((int)direction + 1) % 2);
+        Vector3 startPosition = buildingPosition - movementDirection * Length / 2 + paddingDirection + offset;
+        Vector3 endPosition = buildingPosition + movementDirection * Length / 2 + paddingDirection + offset;
+
+        if (lastPosition.HasValue && Vector3.Distance(endPosition, lastPosition.Value) < Vector3.Distance(startPosition, lastPosition.Value))
+        {
+            Vector3 second = startPosition;
+            startPosition = endPosition;
+            endPosition = second;
+        }
 
         Quaternion rotation = Quaternion.LookRotation(-paddingDirection);
 

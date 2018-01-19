@@ -22,13 +22,16 @@ MonoBehaviour:
     SerializationNodes:
     - Name: North
       Entry: 7
-      Data: 0|Wall, Assembly-CSharp
+      Data: Wall, Assembly-CSharp
     - Name: Info
+      Entry: 3
+      Data: 1
+    - Name: direction
       Entry: 3
       Data: 0
     - Name: Length
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: buildingPosition
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -49,13 +52,16 @@ MonoBehaviour:
       Data: 
     - Name: South
       Entry: 7
-      Data: 1|Wall, Assembly-CSharp
+      Data: Wall, Assembly-CSharp
     - Name: Info
+      Entry: 3
+      Data: 1
+    - Name: direction
       Entry: 3
       Data: 0
     - Name: Length
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: buildingPosition
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -76,13 +82,16 @@ MonoBehaviour:
       Data: 
     - Name: East
       Entry: 7
-      Data: 2|Wall, Assembly-CSharp
+      Data: Wall, Assembly-CSharp
     - Name: Info
+      Entry: 3
+      Data: 2
+    - Name: direction
       Entry: 3
       Data: 0
     - Name: Length
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: buildingPosition
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -103,13 +112,16 @@ MonoBehaviour:
       Data: 
     - Name: West
       Entry: 7
-      Data: 3|Wall, Assembly-CSharp
+      Data: Wall, Assembly-CSharp
     - Name: Info
+      Entry: 3
+      Data: 2
+    - Name: direction
       Entry: 3
       Data: 0
     - Name: Length
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: buildingPosition
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule

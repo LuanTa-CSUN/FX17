@@ -70,11 +70,8 @@ public class PathConfiguration : SerializedScriptableObject
              Configuration.Buildings.SelectMany(
                  building =>
                  {
-                     building.Information.North.buildingPosition = building.Position;
-                     building.Information.South.buildingPosition = building.Position;
-                     building.Information.West.buildingPosition = building.Position;
-                     building.Information.East.buildingPosition = building.Position;
-                     return new Wall[]
+                     building.Information.AttachTo(building.Position);
+                     return new object[]
                      {
                             building.Information.North,
                             building.Information.South,
@@ -119,14 +116,34 @@ public class PathConfiguration : SerializedScriptableObject
         }
     }
 #endif
-
+    
     public List<Pose> GeneratePath()
     {
         List<Pose> posePath = new List<Pose>();
+        Vector3? lastPos = null;
         for (int i = 0; i < Waypoints.Count; i++)
         {
-            posePath.AddRange(Waypoints[i].GetTargetPose(Configuration.VehicleConfiguration));
+            posePath.AddRange(Waypoints[i].GetTargetPose(Configuration.VehicleConfiguration, lastPos));
+            lastPos = posePath.Last().Position;
         }
         return posePath;
+    }
+
+    public GameObject PathRenderer;
+
+    [Button("Generate Trial With Path")]
+    public GameObject GenerateTrialWithPath()
+    {
+        GameObject trialObject = new GameObject("TrialWithPath");
+
+        Configuration.GenerateTrial().transform.parent = trialObject.transform;
+
+        GameObject renderer = GameObject.Instantiate(PathRenderer, trialObject.transform);
+
+        PathRenderer r = renderer.GetComponent<PathRenderer>();
+        r.PathConfiguration = this;
+        r.GenerateRenderedPath();
+
+        return trialObject;
     }
 }

@@ -33,8 +33,17 @@ public class PathRenderer : SerializedMonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    private void GenerateRenderedPath()
+    public void Update()
     {
+        GenerateRenderedPath();
+    }
+
+    public void GenerateRenderedPath()
+    {
+        if(!pathConfiguration)
+        {
+            return;
+        }
         List<Pose> path = pathConfiguration.GeneratePath();
         Vector3[] positions = new Vector3[path.Count];
         for(int i = 0; i < path.Count; i++)

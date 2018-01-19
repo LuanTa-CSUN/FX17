@@ -13,7 +13,7 @@ public class Building : SerializedMonoBehaviour
         set
         {
             buildingInfo = Instantiate(value);
-            buildingInfo.Attach(this);
+            buildingInfo.AttachTo(transform.position);
         }
     }
 

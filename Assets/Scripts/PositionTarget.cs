@@ -17,7 +17,7 @@ public class PositionTarget : ITarget
         Rotation = new Quaternion();
     }
 
-    public Pose[] GetTargetPose(VehicleConfiguration vehicleConfiguration, Vector3 offset = default(Vector3))
+    public Pose[] GetTargetPose(VehicleConfiguration vehicleConfiguration, Vector3? lastPosition = null, Vector3 offset = default(Vector3))
     {
         return new Pose[]
         {

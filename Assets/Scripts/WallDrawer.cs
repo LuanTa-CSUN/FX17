@@ -14,11 +14,11 @@ public class WallDrawer : OdinValueDrawer<Wall>
     protected override void DrawPropertyLayout(IPropertyValueEntry<Wall> entry, GUIContent label)
     {
         EditorGUI.BeginChangeCheck();
-        var info = SirenixEditorFields.EnumDropdown("Info", entry.SmartValue.Info);
+        var info = SirenixEditorFields.EnumDropdown(entry.Property.Info.PropertyName, entry.SmartValue.Info);
 
         if (EditorGUI.EndChangeCheck())
         {
-            entry.SmartValue.Info = (WallInfo)info;
+            entry.SmartValue = new Wall(entry.SmartValue.buildingPosition, entry.SmartValue.direction, (WallInfo)info);
         }
     }
 }

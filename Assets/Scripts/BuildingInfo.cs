@@ -4,16 +4,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BuildingInfo", menuName = "Building Info")]
 public class BuildingInfo : SerializedScriptableObject
 {
-    public Wall North = new Wall(null, Wall.WallDirection.Top);
-    public Wall South = new Wall(null, Wall.WallDirection.Bottom);
-    public Wall East = new Wall(null, Wall.WallDirection.Left);
-    public Wall West = new Wall(null, Wall.WallDirection.Right);
+    public Wall North = new Wall(Vector3.zero, Wall.WallDirection.Top, WallInfo.None);
+    public Wall South = new Wall(Vector3.zero, Wall.WallDirection.Bottom, WallInfo.None);
+    public Wall East = new Wall(Vector3.zero, Wall.WallDirection.Left, WallInfo.None);
+    public Wall West = new Wall(Vector3.zero, Wall.WallDirection.Right, WallInfo.None);
     
-    public void Attach(Building building)
+    public void AttachTo(Vector3 position)
     {
-        North = new Wall(building, Wall.WallDirection.Top);
-        South = new Wall(building, Wall.WallDirection.Bottom);
-        East = new Wall(building, Wall.WallDirection.Left);
-        West = new Wall(building, Wall.WallDirection.Right);
+        North = new Wall(position, Wall.WallDirection.Top, North.Info);
+        South = new Wall(position, Wall.WallDirection.Bottom, South.Info);
+        East = new Wall(position, Wall.WallDirection.Left, East.Info);
+        West = new Wall(position, Wall.WallDirection.Right, West.Info);
     }
 }
