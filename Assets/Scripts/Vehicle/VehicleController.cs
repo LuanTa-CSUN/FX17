@@ -9,9 +9,7 @@ using UnityEngine;
 public class VehicleController : ScriptableObject, IArmable, INavigation
 {
     private ROSBridgeWebSocketConnection connection;
-    [SerializeField]
     private string host;
-    [SerializeField]
     private int port;
  
     public Pose PoseDesired { get; set; }
@@ -24,8 +22,6 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
     {
         this.host = host;
         this.port = port;
-        
-        Debug.Log($"Vehicle host:{host}, port: {port}");
         
         connection = new ROSBridgeWebSocketConnection(this.host, this.port);
         connection.Connect();

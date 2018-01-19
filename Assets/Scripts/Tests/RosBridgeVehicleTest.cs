@@ -66,6 +66,9 @@ using UnityEngine;public class RosBridgeVehicleTest : MonoBehaviour
         vehicle.PoseDesired.Position = pos;
         //vehicle.PoseDesired.Rotation = vehicle.PoseActual.Rotation;
         vehicle.Update();
+        
+        
+        
         drone.transform.position = vehicle.PoseActual.Position;
         //drone.transform.rotation = vehicle.PoseActual.Rotation;
     }
