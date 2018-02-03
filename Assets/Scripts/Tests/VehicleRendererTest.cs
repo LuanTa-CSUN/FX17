@@ -2,7 +2,6 @@
 
 public class VehicleRendererTest : MonoBehaviour
 {
-
 	[SerializeField] private string host;
 
 	[SerializeField] private int port;
@@ -43,22 +42,22 @@ public class VehicleRendererTest : MonoBehaviour
 			vehicleController.EnableOffboard();
 		}
 		
-		if (Input.GetKey(KeyCode.D)) // moves right
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) // moves right
 		{
 			position.x += 0.3f;
 		}
 		
-		if (Input.GetKey(KeyCode.A)) // left
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) // left
 		{
 			position.x -= 0.3f;
 		}
 
-		if (Input.GetKey(KeyCode.W)) //forwards
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) // forwards
 		{
 			position.z += 0.3f;
 		}
 
-		if (Input.GetKey(KeyCode.S)) // backwards
+		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) // backwards
 		{
 			position.z -= 0.3f;
 		}
@@ -70,7 +69,7 @@ public class VehicleRendererTest : MonoBehaviour
 		}
 		else
 		{
-			if (position.y > 0)
+			if (position.y - 0.1f > 0)
 			{
 				position.y -= 0.1f;	
 			}
