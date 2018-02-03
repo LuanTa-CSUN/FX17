@@ -6,15 +6,13 @@ public class VehicleRenderer : MonoBehaviour
 	private float minimumAltitude;
 	
 	private VehicleController vehicleController;
-
 	public VehicleController VehicleController
 	{
 		get { return vehicleController; }
 		set
 		{
 			vehicleController = value;
-			Pose pose = vehicleController.PoseActual;
-			SetPose(pose.Rotation, pose.Position);
+			SetPose(vehicleController.PoseActual);
 		}
 	}
 
@@ -23,23 +21,21 @@ public class VehicleRenderer : MonoBehaviour
 		if (vehicleController == null)
 			return;
 		
-		Pose pose = vehicleController.PoseActual;
-		
 		//LerpPose(pose.Rotation, pose.Position);
-		SetPose(pose.Rotation, pose.Position);
+		SetPose(vehicleController.PoseActual);
 	}
 
-	private void LerpPose(Quaternion rotation, Vector3 worldPos)
+	private void LerpPose(Pose pose)
 	{
-		worldPos = GetPositionClamped(worldPos);
+		Vector3 worldPos = GetPositionClamped(pose.Position);
 		transform.position = Vector3.Lerp(transform.position, worldPos, Time.deltaTime);
-		transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime);
+		transform.rotation = Quaternion.Lerp(transform.rotation, pose.Rotation, Time.deltaTime);
 	}
 	
-	private void SetPose(Quaternion rotation, Vector3 worldPos)
+	private void SetPose(Pose pose)
 	{
-		transform.position = GetPositionClamped(worldPos);
-		transform.rotation = rotation;
+		transform.position = GetPositionClamped(pose.Position);
+		transform.rotation = pose.Rotation;
 	}
 	
 	private Vector3 GetPositionClamped(Vector3 worldPos)
