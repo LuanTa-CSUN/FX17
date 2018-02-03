@@ -36,18 +36,18 @@ public static class Extensions
     public static Quaternion ToQuaternion(this QuaternionMsg quaternionMsg)
     {
         return new Quaternion(
-            quaternionMsg.GetX(),
+            -quaternionMsg.GetY(),
             quaternionMsg.GetZ(),
-            quaternionMsg.GetY(),
-            quaternionMsg.GetW());
+            quaternionMsg.GetX(),
+            -quaternionMsg.GetW()); // negate w because left to right handed have opposite rotation angles
     }
 
     public static QuaternionMsg ToQuaternionMsg(this Quaternion quaternion)
-    {
+    {       
         return new QuaternionMsg(
-            quaternion.x,
             quaternion.z,
+            -quaternion.x,
             quaternion.y,
-            quaternion.w);
+            -quaternion.w); // negate w because left to right handed have opposite rotation angles
     }
 }
