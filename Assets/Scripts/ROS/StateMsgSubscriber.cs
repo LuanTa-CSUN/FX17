@@ -1,33 +1,28 @@
-﻿using ROSBridgeLib;
-using ROSBridgeLib.geometry_msgs;
+﻿using ROSBridgeLib.sensor_msgs;
 using SimpleJSON;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class PoseMsgSubscriber
+public class StateMsgSubscriber
 {
     public delegate void CallBackHandler(ROSBridgeMsg msg);
     public static event CallBackHandler OnCallBack;
 
     public static string GetMessageTopic()
     {
-        return "/mavros/local_position/pose";
+        return "mavros/state";
     }
 
     public static string GetMessageType()
     {
-        return PoseStampedMsg.GetMessageType();
+        return BatteryStateMsg.GetMessageType();
     }
 
     public static ROSBridgeMsg ParseMessage(JSONNode msg)
     {
-        return new PoseStampedMsg(msg);
+        return new BatteryStateMsg(msg);
     }
 
     public static void CallBack(ROSBridgeMsg msg)
     {
         OnCallBack?.Invoke(msg);
-        //Debug.Log("Render callback in /mavros/local_position/pose " + msg);
     }
 }

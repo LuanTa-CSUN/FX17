@@ -9,7 +9,7 @@ public class PoseMsgPublisher
 {
     public static string GetMessageTopic()
     {
-        return "/mavros/setpoint_position/local";
+        return "mavros/setpoint_position/local";
     }
 
     public static string GetMessageType()
