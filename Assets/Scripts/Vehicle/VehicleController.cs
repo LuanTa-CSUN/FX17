@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using ROSBridgeLib;
 using ROSBridgeLib.geometry_msgs;
+using ROSBridgeLib.mavros_msgs;
+using ROSBridgeLib.sensor_msgs;
 using ROSBridgeLib.std_msgs;
-using UnityEngine;
 
 [CreateAssetMenu(fileName = "VehicleController", menuName = "VehicleController/VehicleController", order = 1)]
 public class VehicleController : ScriptableObject, IArmable, INavigation
@@ -16,6 +18,9 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
     public Pose PoseActual  { get; private set; }
     public List<Pose> Mission {get; set;}
 
+    public BatteryStateMsg BatteryState { get; private set; }
+    public StateMsg State { get; private set; }
+    
     private int seq;
 
     public void Initialize(string host, int port)
@@ -25,14 +30,33 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         
         connection = new ROSBridgeWebSocketConnection(this.host, this.port);
         connection.Connect();
+        
         connection.AddServiceResponse(typeof(ServiceCallback));
+        
         connection.AddSubscriber(typeof(PoseMsgSubscriber));
+        connection.AddSubscriber(typeof(StateMsgSubscriber));
+        connection.AddSubscriber(typeof(BatteryStateMsgSubscriber));
+        
+        connection.AddPublisher(typeof(PoseMsgPublisher));
+        
         PoseMsgSubscriber.OnCallBack += PoseMsgSubscriber_OnCallBack;
+        StateMsgSubscriber.OnCallBack += StateMsgSubscriber_OnCallback;
+        BatteryStateMsgSubscriber.OnCallBack += BatteryStateMsgSubscriber_OnCallBack;
     }
 
     private void PoseMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
     {
         PoseActual = ((PoseStampedMsg) msg)._pose;
+    }
+
+    private void BatteryStateMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
+    {
+        BatteryState = (BatteryStateMsg) msg;
+    }
+
+    private void StateMsgSubscriber_OnCallback(ROSBridgeMsg msg)
+    {
+        State = (StateMsg) msg;
     }
 
     public void Update()
@@ -86,10 +110,7 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
     public bool Armed { get; private set; }
     public bool ProcessingArm 
     { 
-        get
-        {
-            return Disarming || Arming;
-        } 
+        get{ return Disarming || Arming; } 
     }
 
     public bool Disarming { get; private set; }
