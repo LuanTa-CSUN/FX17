@@ -11,24 +11,18 @@ using ROSBridgeLib.std_msgs;
 public class VehicleController : ScriptableObject, IArmable, INavigation
 {
     private ROSBridgeWebSocketConnection connection;
-    private string host;
-    private int port;
  
+    private int seq;
     public Pose PoseDesired { get; set; }
     public Pose PoseActual  { get; private set; }
     public List<Pose> Mission {get; set;}
 
-    public BatteryStateMsg BatteryState { get; private set; }
     public StateMsg State { get; private set; }
-    
-    private int seq;
+    public BatteryStateMsg BatteryState { get; private set; }
 
     public void Initialize(string host, int port)
-    {
-        this.host = host;
-        this.port = port;
-        
-        connection = new ROSBridgeWebSocketConnection(this.host, this.port);
+    {       
+        connection = new ROSBridgeWebSocketConnection(host, port);
         connection.Connect();
         
         connection.AddServiceResponse(typeof(ServiceCallback));
@@ -49,14 +43,14 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         PoseActual = ((PoseStampedMsg) msg)._pose;
     }
 
-    private void BatteryStateMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
-    {
-        BatteryState = (BatteryStateMsg) msg;
-    }
-
     private void StateMsgSubscriber_OnCallback(ROSBridgeMsg msg)
     {
         State = (StateMsg) msg;
+    }
+    
+    private void BatteryStateMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
+    {
+        BatteryState = (BatteryStateMsg) msg;
     }
 
     public void Update()
@@ -69,50 +63,35 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         connection.Publish(PoseMsgPublisher.GetMessageTopic(), poseStampedMsg);
     }
 
-    public void ProcessArm (bool arm, Action<bool> callback = null)
+    public void ProcessArm (bool arm)
     {
         if(arm)
         {
-            Arm(callback);
+            Arm();
         }
         else
         {
-            Disarm(callback);
+            Disarm();
         }
     }
 
-    public void Arm (Action<bool> callback = null)
+    public void Arm()
     {
-        Arming = true;
-        connection.CallService("mavros/cmd/arming", "[true]");
-        //TODO handle callback 
-        if (callback != null)
-        {
-            
-        }
+        connection.CallService("mavros/cmd/arming", "[true]"); 
     }
 
-    public void Disarm (Action<bool> callback = null)
+    public void Disarm()
     {
-        Disarming = true;
         connection.CallService("mavros/cmd/arming", "[false]");
-        if (callback != null)
-        {
-            
-        }
     }
 
     public void EnableOffboard()
     {
         connection.CallService("/mavros/set_mode", "[0, \"OFFBOARD\"]");
     }
-    
-    public bool Armed { get; private set; }
-    public bool ProcessingArm 
-    { 
-        get{ return Disarming || Arming; } 
-    }
 
-    public bool Disarming { get; private set; }
-    public bool Arming { get; private set; }
+    public bool Armed
+    {
+        get { return State?.Armed ?? false; }
+    }
 } 

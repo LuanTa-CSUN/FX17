@@ -2,11 +2,8 @@ using System;
 
 public interface IArmable
 {
-    void ProcessArm (bool arm, Action<bool> callback = null);
-    void Arm (Action<bool> callback = null);
-    void Disarm (Action<bool> callback = null);
+    void ProcessArm (bool arm);
+    void Arm ();
+    void Disarm ();
     bool Armed { get; }
-    bool ProcessingArm { get; }
-    bool Disarming { get; }
-    bool Arming { get; }
 }
