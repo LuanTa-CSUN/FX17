@@ -1,4 +1,4 @@
-﻿using ROSBridgeLib.sensor_msgs;
+﻿using ROSBridgeLib.mavros_msgs;
 using SimpleJSON;
 
 public class StateMsgSubscriber
@@ -13,12 +13,12 @@ public class StateMsgSubscriber
 
     public static string GetMessageType()
     {
-        return BatteryStateMsg.GetMessageType();
+        return StateMsg.GetMessageType();
     }
 
     public static ROSBridgeMsg ParseMessage(JSONNode msg)
     {
-        return new BatteryStateMsg(msg);
+        return new StateMsg(msg);
     }
 
     public static void CallBack(ROSBridgeMsg msg)
