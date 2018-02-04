@@ -21,7 +21,7 @@ public class VehicleRenderer : MonoBehaviour
 		if (vehicleController == null)
 			return;
 		
-		//LerpPose(pose.Rotation, pose.Position);
+		//LerpPose(vehicleController.PoseActual);
 		SetPose(vehicleController.PoseActual);
 	}
 
