@@ -19,6 +19,7 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
 
     public StateMsg State { get; private set; }
     public BatteryStateMsg BatteryState { get; private set; }
+    public RosImageFeed ImageFeed { get; private set; }
 
     public void Initialize(string host, int port)
     {       
@@ -36,6 +37,8 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
         MavrosLocalPositionPoseSubscriber.OnCallBack += MavrosLocalPositionPoseSubscriber_OnCallBack;
         MavrosStateSubscriber.OnCallBack += MavrosStateSubscriber_OnCallback;
         MavrosBatterySubscriber.OnCallBack += MavrosBatterySubscriber_OnCallBack;
+        
+        ImageFeed = new RosImageFeed(connection, 10);
     }
 
     public void Update()
@@ -103,4 +106,10 @@ public class VehicleController : ScriptableObject, IArmable, INavigation
     {
         BatteryState = (BatteryStateMsg) msg;
     }
+
+    private void UsbCamImageRawSubscriber_OnCallBack(ROSBridgeMsg msg)
+    {
+        
+    }
+    
 } 
