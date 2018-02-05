@@ -25,10 +25,10 @@ public class RosBridgeDataTest : MonoBehaviour {
         connection = new ROSBridgeWebSocketConnection(host, port);
         connection.Connect();
         connection.AddServiceResponse(typeof(ServiceCallback));
-        connection.AddSubscriber(typeof(PoseMsgSubscriber));
-        PoseMsgSubscriber.OnCallBack += PoseMsgSubscriber_OnCallBack;
+        connection.AddSubscriber(typeof(MavrosLocalPositionPoseSubscriber));
+        MavrosLocalPositionPoseSubscriber.OnCallBack += PoseMsgSubscriber_OnCallBack;
 
-        connection.AddPublisher(typeof(PoseMsgPublisher));
+        connection.AddPublisher(typeof(MavrosSetpointPositionLocalPublisher));
     }
 
     private void PoseMsgSubscriber_OnCallBack(ROSBridgeMsg msg)
@@ -79,7 +79,7 @@ public class RosBridgeDataTest : MonoBehaviour {
             xOffset++;
         }
         connection.Publish(
-             PoseMsgPublisher.GetMessageTopic(),
+             MavrosSetpointPositionLocalPublisher.GetMessageTopic(),
              new PoseStampedMsg(
              new HeaderMsg(
                  seq,

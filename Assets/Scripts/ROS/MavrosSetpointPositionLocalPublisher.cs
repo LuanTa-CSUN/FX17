@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class PoseMsgPublisher
+public class MavrosSetpointPositionLocalPublisher
 {
     public static string GetMessageTopic()
     {
